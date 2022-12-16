@@ -1,1 +1,1 @@
-# MQTT based protocol for things
+# MQTT based protocol library for things
