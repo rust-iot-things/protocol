@@ -1,0 +1,6 @@
+@startuml thing_input
+
+Lambda <-- Thing: { "MeasurementTemperature": { "id": 1771, "temperature": 19.51111 } }
+Lambda <-- Thing: { "MeasurmentHumidity": { "id": 1771, "humidity": 46 } }
+
+@enduml

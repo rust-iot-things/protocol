@@ -1,0 +1,6 @@
+@startuml registry
+
+Lambda <-- Thing: { "RequestRegistration": { "id": 1771 } }
+Lambda --> Thing: { "SetName": { "id": 1771, "name": "new_thing" } }
+
+@enduml
