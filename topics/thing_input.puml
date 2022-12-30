@@ -3,4 +3,7 @@
 Lambda <-- Thing: { "MeasurementTemperature": { "id": 1771, "temperature": 19.51111 } }
 Lambda <-- Thing: { "MeasurmentHumidity": { "id": 1771, "humidity": 46 } }
 
+APIGateway --> Thing: { "SetName": { "id": 1771, "name": "new_thing" } }
+APIGateway --> Thing: { "SetOutput": { "id": 1771, "state": "on/off" } }
+
 @enduml
