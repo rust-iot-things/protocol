@@ -41,6 +41,28 @@ The following messages are (or will be..) supported for their topics:
 }
 ```
 
+### LampState
+```json
+{
+  "LampState": {
+    "id": 1771,
+    "state": true
+  }
+}
+```
+
+### LampRGB
+```json
+{
+  "SetLamp": {
+    "id": 1771,
+    "r": 1,
+    "g": 2,
+    "b": 3,
+  }
+}
+```
+
 ## Parser
 Messages are used only if parsed. Each topic uses different or even the same messages.
 ### Parser `registry`
@@ -53,6 +75,8 @@ The following messages are parsed in the `registry` topic:
 The following messages are parsed in the `thing_input` topic:
 - MeasurementTemperature
 - MeasurmentHumidity
+- LampState
+- LampRGB
 
 ## Usage example
 This example shows how the protocl my be used by the thing and cloud.
