@@ -54,7 +54,7 @@ The following messages are (or will be..) supported for their topics:
 ### LampRGB
 ```json
 {
-  "SetLamp": {
+  "LampRGB": {
     "id": 1771,
     "r": 1,
     "g": 2,
