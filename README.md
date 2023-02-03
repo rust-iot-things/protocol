@@ -6,7 +6,7 @@ The following messages are (or will be..) supported for their topics:
 ```json
 {
   "RequestRegistration": {
-    "id": 1
+    "id": "1"
   }
 }
 ```
@@ -15,7 +15,7 @@ The following messages are (or will be..) supported for their topics:
 ```json
 {
   "SetName": {
-    "id": 1,
+    "id": "1",
     "name": "new_thing" // default name
   }
 }
@@ -25,7 +25,7 @@ The following messages are (or will be..) supported for their topics:
 ```json
 {
   "MeasurementTemperature": {
-    "id": 1771,
+    "id": "1",
     "temperature": 19.319078
   }
 }
@@ -35,7 +35,7 @@ The following messages are (or will be..) supported for their topics:
 ```json
 {
   "MeasurmentHumidity": {
-    "id": 1771,
+    "id": "1",
     "humidity": 53
   }
 }
@@ -45,7 +45,7 @@ The following messages are (or will be..) supported for their topics:
 ```json
 {
   "LampState": {
-    "id": 1771,
+    "id": "1",
     "state": true
   }
 }
@@ -55,7 +55,7 @@ The following messages are (or will be..) supported for their topics:
 ```json
 {
   "LampRGB": {
-    "id": 1771,
+    "id": "1",
     "r": 1,
     "g": 2,
     "b": 3,

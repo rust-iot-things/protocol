@@ -1,10 +1,10 @@
 @startuml thing_input
 
-Lambda <-- Thing: { "MeasurementTemperature": { "id": 1771, "temperature": 19.51111 } }
-Lambda <-- Thing: { "MeasurmentHumidity": { "id": 1771, "humidity": 46 } }
+Lambda <-- Thing: { "MeasurementTemperature": { "id": "1", "temperature": 19.51111 } }
+Lambda <-- Thing: { "MeasurmentHumidity": { "id": "1", "humidity": 46 } }
 
-' APIGateway --> Thing: { "SetName": { "id": 1771, "name": "new_thing" } }
-APIGateway --> Thing: { "LampState": { "id": 1771, "state": true/false } }
-APIGateway --> Thing: { "LampRGB": { "id": 1771, "r": 1, "g": 2, "b": 3 } }
+' APIGateway --> Thing: { "SetName": { "id": "1", "name": "new_thing" } }
+APIGateway --> Thing: { "LampState": { "id": "1", "state": true/false } }
+APIGateway --> Thing: { "LampRGB": { "id": "1", "r": 1, "g": 2, "b": 3 } }
 
 @enduml
