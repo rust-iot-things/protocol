@@ -36,7 +36,7 @@ mod test {
     #[test]
     fn parse_set_name() {
         // given
-        let payload: &str = r#"{"SetName":{"id":1,"name":"new_thing"}}"#;
+        let payload: &str = r#"{"SetName":{"id":"1","name":"new_thing"}}"#;
 
         // when
         let result: RegistryType = parse(payload);
@@ -44,7 +44,7 @@ mod test {
         // then
         let expected = RegistryType::SetNameType(SetNameDescirption {
             set_name: SetName {
-                id: 1,
+                id: "1".into(),
                 name: "new_thing".into(),
             },
         });
@@ -66,7 +66,7 @@ mod test {
     // #[test]
     // fn parse_fails_with_invalid_json() {
     //     // given
-    //     let payload: &str = r#"{"WrongMessage":{"id":1,"name":"new_thing"}}"#;
+    //     let payload: &str = r#"{"WrongMessage":{"id":"1","name":"new_thing"}}"#;
 
     //     // when
     //     let result = parse(payload);
@@ -78,10 +78,10 @@ mod test {
     // #[test]
     // fn create_success() {
     //     // given
-    //     let expected: &str = r#"{"SetName":{"id":1,"name":"new_thing"}}"#;
+    //     let expected: &str = r#"{"SetName":{"id":"1","name":"new_thing"}}"#;
 
     //     // when
-    //     let result = create(1, "new_thing".into());
+    //     let result = create("1".into(), "new_thing".into());
 
     //     // then
     //     assert_eq!(expected, result.as_str());

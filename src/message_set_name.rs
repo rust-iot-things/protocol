@@ -3,7 +3,7 @@ use serde_json;
 
 #[derive(Serialize, Deserialize)]
 pub struct SetName {
-    pub id: u128,
+    pub id: String,
     pub name: String,
 }
 
@@ -13,7 +13,7 @@ pub struct SetNameDescirption {
     pub set_name: SetName,
 }
 
-pub fn create(id: u128, name: String) -> String {
+pub fn create(id: String, name: String) -> String {
     let set_name_description = SetNameDescirption {
         set_name: SetName { id, name },
     };
@@ -31,7 +31,7 @@ mod test {
     #[test]
     fn parse_success() {
         // given
-        let payload: &str = r#"{"SetName":{"id":1,"name":"new_thing"}}"#;
+        let payload: &str = r#"{"SetName":{"id":"1","name":"new_thing"}}"#;
 
         // when
         let result = parse(payload);
@@ -39,7 +39,7 @@ mod test {
         // then
         assert!(result.is_ok());
         let result = result.unwrap();
-        assert_eq!(result.set_name.id, 1);
+        assert_eq!(result.set_name.id, "1");
         assert_eq!(result.set_name.name, "new_thing");
     }
 
@@ -58,7 +58,7 @@ mod test {
     #[test]
     fn parse_fails_with_invalid_json() {
         // given
-        let payload: &str = r#"{"WrongMessage":{"id":1,"name":"new_thing"}}"#;
+        let payload: &str = r#"{"WrongMessage":{"id":"1","name":"new_thing"}}"#;
 
         // when
         let result = parse(payload);
@@ -70,10 +70,10 @@ mod test {
     #[test]
     fn create_success() {
         // given
-        let expected: &str = r#"{"SetName":{"id":1,"name":"new_thing"}}"#;
+        let expected: &str = r#"{"SetName":{"id":"1","name":"new_thing"}}"#;
 
         // when
-        let result = create(1, "new_thing".into());
+        let result = create("1".into(), "new_thing".into());
 
         // then
         assert_eq!(expected, result.as_str());

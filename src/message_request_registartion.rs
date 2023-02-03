@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, PartialEq, Debug)]
 pub struct RequestRegistration {
-    pub id: u128,
+    pub id: String,
 }
 
 #[derive(Serialize, Deserialize, PartialEq, Debug)]
@@ -11,7 +11,7 @@ pub struct RequestRegistrationDescirption {
     pub request_requistration: RequestRegistration,
 }
 
-pub fn create(id: u128) -> String {
+pub fn create(id: String) -> String {
     let request_registration_description = RequestRegistrationDescirption {
         request_requistration: RequestRegistration { id },
     };
@@ -28,7 +28,7 @@ mod test {
     #[test]
     fn parse_success() {
         // given
-        let payload: &str = r#"{"RequestRegistration": {"id": 1}}"#;
+        let payload: &str = r#"{"RequestRegistration": {"id": "1"}}"#;
 
         // when
         let result = parse(payload);
@@ -36,7 +36,7 @@ mod test {
         // then
         assert!(result.is_ok());
         let result = result.unwrap();
-        assert_eq!(result.request_requistration.id, 1);
+        assert_eq!(result.request_requistration.id, "1");
     }
 
     #[test]
@@ -54,7 +54,7 @@ mod test {
     #[test]
     fn parse_fails_with_invalid_json() {
         // given
-        let payload: &str = r#"{"WrongMessage": {"id": 1}}"#;
+        let payload: &str = r#"{"WrongMessage": {"id": "1"}}"#;
 
         // when
         let result = parse(payload);
@@ -66,10 +66,10 @@ mod test {
     #[test]
     fn create_success() {
         // given
-        let expected: &str = r#"{"RequestRegistration":{"id":1}}"#;
+        let expected: &str = r#"{"RequestRegistration":{"id":"1"}}"#;
 
         // when
-        let result = create(1);
+        let result = create("1".into());
 
         // then
         assert_eq!(expected, result.as_str());

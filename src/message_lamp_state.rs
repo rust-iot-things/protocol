@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct LampState {
-    pub id: u128,
+    pub id: String,
     pub state: bool,
 }
 
@@ -12,7 +12,7 @@ pub struct LampStateDescirption {
     pub lamp_state: LampState,
 }
 
-pub fn create(id: u128, state: bool) -> String {
+pub fn create(id: String, state: bool) -> String {
     let lamp_state_description = LampStateDescirption {
         lamp_state: LampState { id, state },
     };
@@ -30,7 +30,7 @@ mod test {
     #[test]
     fn parse_success() {
         // given
-        let payload: &str = r#"{"LampState":{"id":1,"state":true}}"#;
+        let payload: &str = r#"{"LampState":{"id":"1","state":true}}"#;
 
         // when
         let result = parse(payload);
@@ -38,7 +38,7 @@ mod test {
         // then
         assert!(result.is_ok());
         let result = result.unwrap();
-        assert_eq!(result.lamp_state.id, 1);
+        assert_eq!(result.lamp_state.id, "1");
         assert_eq!(result.lamp_state.state, true);
     }
 
@@ -57,7 +57,7 @@ mod test {
     #[test]
     fn parse_fails_with_invalid_json() {
         // given
-        let payload: &str = r#"{"WrongMessage":{"id":1,"state":true}}"#;
+        let payload: &str = r#"{"WrongMessage":{"id":"1","state":true}}"#;
 
         // when
         let result = parse(payload);
@@ -69,10 +69,10 @@ mod test {
     #[test]
     fn create_success() {
         // given
-        let expected: &str = r#"{"LampState":{"id":1,"state":true}}"#;
+        let expected: &str = r#"{"LampState":{"id":"1","state":true}}"#;
 
         // when
-        let result = create(1, true);
+        let result = create("1".into(), true);
 
         // then
         assert_eq!(expected, result.as_str());

@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct LampRGB {
-    pub id: u128,
+    pub id: String,
     pub r: u32,
     pub g: u32,
     pub b: u32,
@@ -14,7 +14,7 @@ pub struct LampRGBDescirption {
     pub lamp_rgb: LampRGB,
 }
 
-pub fn create(id: u128, r: u32, g: u32, b: u32) -> String {
+pub fn create(id: String, r: u32, g: u32, b: u32) -> String {
     let lamp_rgb_description = LampRGBDescirption {
         lamp_rgb: LampRGB { id, r, g, b },
     };
@@ -32,7 +32,7 @@ mod test {
     #[test]
     fn parse_success() {
         // given
-        let payload: &str = r#"{"LampRGB":{"id":1,"r":1,"g":2,"b":3}}"#;
+        let payload: &str = r#"{"LampRGB":{"id":"1","r":1,"g":2,"b":3}}"#;
 
         // when
         let result = parse(payload);
@@ -40,7 +40,7 @@ mod test {
         // then
         assert!(result.is_ok());
         let result = result.unwrap();
-        assert_eq!(result.lamp_rgb.id, 1);
+        assert_eq!(result.lamp_rgb.id, "1");
         assert_eq!(result.lamp_rgb.r, 1);
         assert_eq!(result.lamp_rgb.g, 2);
         assert_eq!(result.lamp_rgb.b, 3);
@@ -61,7 +61,7 @@ mod test {
     #[test]
     fn parse_fails_with_invalid_json() {
         // given
-        let payload: &str = r#"{"WrongMessage":{"id":1,"r":1,"g":2,"b":3}}"#;
+        let payload: &str = r#"{"WrongMessage":{"id":"1","r":1,"g":2,"b":3}}"#;
 
         // when
         let result = parse(payload);
@@ -73,10 +73,10 @@ mod test {
     #[test]
     fn create_success() {
         // given
-        let expected: &str = r#"{"LampRGB":{"id":1,"r":1,"g":2,"b":3}}"#;
+        let expected: &str = r#"{"LampRGB":{"id":"1","r":1,"g":2,"b":3}}"#;
 
         // when
-        let result = create(1, 1, 2, 3);
+        let result = create("1".into(), 1, 2, 3);
 
         // then
         assert_eq!(expected, result.as_str());

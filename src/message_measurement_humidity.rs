@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct MeasurmentHumidity {
-    pub id: u128,
+    pub id: String,
     pub humidity: u8,
 }
 
@@ -12,7 +12,7 @@ pub struct MeasurmentHumidityDescirption {
     pub measurement_humidity: MeasurmentHumidity,
 }
 
-pub fn create(id: u128, humidity: u8) -> String {
+pub fn create(id: String, humidity: u8) -> String {
     let measurement_humidity_description = MeasurmentHumidityDescirption {
         measurement_humidity: MeasurmentHumidity { id, humidity },
     };
@@ -30,7 +30,7 @@ mod test {
     #[test]
     fn parse_success() {
         // given
-        let payload: &str = r#"{"MeasurmentHumidity":{"id":1,"humidity":2}}"#;
+        let payload: &str = r#"{"MeasurmentHumidity":{"id":"1","humidity":2}}"#;
 
         // when
         let result = parse(payload);
@@ -38,7 +38,7 @@ mod test {
         // then
         assert!(result.is_ok());
         let result = result.unwrap();
-        assert_eq!(result.measurement_humidity.id, 1);
+        assert_eq!(result.measurement_humidity.id, "1");
         assert_eq!(result.measurement_humidity.humidity, 2);
     }
 
@@ -57,7 +57,7 @@ mod test {
     #[test]
     fn parse_fails_with_invalid_json() {
         // given
-        let payload: &str = r#"{"WrongMessage":{"id":1,"humidity":2}}"#;
+        let payload: &str = r#"{"WrongMessage":{"id":"1","humidity":2}}"#;
 
         // when
         let result = parse(payload);
@@ -69,10 +69,10 @@ mod test {
     #[test]
     fn create_success() {
         // given
-        let expected: &str = r#"{"MeasurmentHumidity":{"id":1,"humidity":2}}"#;
+        let expected: &str = r#"{"MeasurmentHumidity":{"id":"1","humidity":2}}"#;
 
         // when
-        let result = create(1, 2);
+        let result = create("1".into(), 2);
 
         // then
         assert_eq!(expected, result.as_str());
