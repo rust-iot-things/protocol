@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, PartialEq, Debug)]
 pub struct RequestRegistration {
-    pub id: u64,
+    pub id: u128,
 }
 
 #[derive(Serialize, Deserialize, PartialEq, Debug)]
@@ -11,7 +11,7 @@ pub struct RequestRegistrationDescirption {
     pub request_requistration: RequestRegistration,
 }
 
-pub fn create(id: u64) -> String {
+pub fn create(id: u128) -> String {
     let request_registration_description = RequestRegistrationDescirption {
         request_requistration: RequestRegistration { id },
     };

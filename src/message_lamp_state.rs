@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct LampState {
-    pub id: u64,
+    pub id: u128,
     pub state: bool,
 }
 
@@ -12,7 +12,7 @@ pub struct LampStateDescirption {
     pub lamp_state: LampState,
 }
 
-pub fn create(id: u64, state: bool) -> String {
+pub fn create(id: u128, state: bool) -> String {
     let lamp_state_description = LampStateDescirption {
         lamp_state: LampState { id, state },
     };

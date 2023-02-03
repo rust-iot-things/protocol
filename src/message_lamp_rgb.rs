@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct LampRGB {
-    pub id: u64,
+    pub id: u128,
     pub r: u32,
     pub g: u32,
     pub b: u32,
@@ -14,7 +14,7 @@ pub struct LampRGBDescirption {
     pub lamp_rgb: LampRGB,
 }
 
-pub fn create(id: u64, r: u32, g: u32, b: u32) -> String {
+pub fn create(id: u128, r: u32, g: u32, b: u32) -> String {
     let lamp_rgb_description = LampRGBDescirption {
         lamp_rgb: LampRGB { id, r, g, b },
     };

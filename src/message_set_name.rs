@@ -3,7 +3,7 @@ use serde_json;
 
 #[derive(Serialize, Deserialize)]
 pub struct SetName {
-    pub id: u64,
+    pub id: u128,
     pub name: String,
 }
 
@@ -13,7 +13,7 @@ pub struct SetNameDescirption {
     pub set_name: SetName,
 }
 
-pub fn create(id: u64, name: String) -> String {
+pub fn create(id: u128, name: String) -> String {
     let set_name_description = SetNameDescirption {
         set_name: SetName { id, name },
     };
